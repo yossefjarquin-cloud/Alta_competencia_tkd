@@ -1,382 +1,383 @@
- <DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <meta charset="UTF-8" />
- <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <title>Escuela de Taekwondo | Disciplina y Honor</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escuela de Taekwondo | Disciplina y Honor</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
 
-  <style>
-    .redes-container {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
+  <style>
+    /* --- Variables de Color --- */
+    :root {
+      --azul-tkd: #0047AB;    /* Azul fuerte del peto */
+      --rojo-tkd: #D32F2F;    /* Rojo intenso del peto */
+      --negro-cinturon: #1a1a1a;
+      --gris-claro: #f5f5f5;
+      --blanco: #ffffff;
+    }
 
-    /* Estilo del botón de WhatsApp (Verde oficial) */
-    .btn-whatsapp {
-      background-color: #25D366;
-      color: white;
-      padding: 15px 30px;
-      text-decoration: none;
-      border-radius: 50px;  BASE (/* Bordes redondos */
-      font-weight: bold;
-      font-size: 1.2em;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      transition: transform 0.2s;
-      display: inline-block;
-    }
-/* 1. ESTILOPara celulares) */
-/* Por defecto, todo se verá en 1 sola columna (ideal para móvil) */
-.grid-galeria {
-    display: grid;
-    grid-template-columns: 1fr; /* 1 columna que ocupa todo el ancho */
-    gap: 20px; /* Espacio entre fotos */
-    padding: 10px;
-}
+    /* Estilos generales del cuerpo */
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--gris-claro);
+      color: var(--negro-cinturon);
+      margin: 0;
+      padding: 0;
+    }
 
-/* 2. REGLA PARA COMPUTADORAS (Media Query) */
-/* Aquí le decimos: "Si la pantalla mide más de 768px (tablets y PC), cambia a 3 columnas" */
-@media (min-width: 768px) {
-    .grid-galeria {
-        grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
-    }
-}
+    /* --- Estilos del Menú de Navegación --- */
+    nav {
+      background-color: var(--negro-cinturon);
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      text-align: center;
+    }
 
-/* 3. IMÁGENES FLEXIBLES */
-/* Esto es vital: evita que una imagen gigante rompa tu diseño */
-img {
-    max-width: 100%; /* La imagen nunca será más ancha que su contenedor */
-    height: auto;    /* La altura se ajusta sola para no deformarse */
-    display: block;
-}
-    /* Estilo del botón de Facebook (Azul oficial) */
-    .btn-facebook {
-      background-color: #1877F2;
-      color: white;
-      padding: 15px 30px;
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: bold;
-      font-size: 1.2em;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      transition: transform 0.2s;
-      display: inline-block;
-    }
+    nav a {
+      color: var(--blanco);
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 15px;
+      font-size: 1.1em;
+    }
 
-    /* Animación al pasar el mouse */
-    .btn-whatsapp:hover, .btn-facebook:hover {
-      transform: scale(1.05); /* Se hace un poquito más grande */
-      opacity: 0.9;
-    }
+    nav a:hover {
+      color: var(--rojo-tkd);
+    }
 
-    /* Estilo para que el mapa se adapte al celular */
-    .mapa-responsive {
-      width: 100%;
-      height: 400px;
-      border: 0;
-      border-radius: 8px;
-    }
+    /* --- Estilos del Encabezado (Hero) --- */
+    header {
+      background-color: #222; 
+      /* Asegúrate de que fondo_tkd.jpg exista en tu carpeta */
+      background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('fondo_tkd.jpg');
+      background-size: cover;
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+    }
 
-    /* --- Variables de Color (Para cambiar todo rápido) --- */
-    :root {
-      --azul-tkd: #0047AB;    /* Azul fuerte del peto */
-      --rojo-tkd: #D32F2F;    /* Rojo intenso del peto */
-      --negro-cinturon: #1a1a1a;
-      --gris-claro: #f5f5f5;
-      --blanco: #ffffff;
-    }
+    header h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4em;
+      margin: 0;
+    }
 
-    /* Estilos generales del cuerpo */
-    body {
-      font-family: 'Roboto', sans-serif;
-      background-color: var(--gris-claro);
-      color: var(--negro-cinturon);
-      margin: 0;
-      padding: 0;
-    }
+    header img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 4px solid white;
+      margin-top: 20px;
+      object-fit: cover;
+    }
 
-    /* --- Estilos del Menú de Navegación --- */
-    nav {
-      background-color: var(--negro-cinturon);
-      padding: 15px 0;
-      position: sticky; /* Esto hace que el menú te siga al bajar */
-      top: 0;
-      z-index: 1000;
-      text-align: center;
-    }
+    /* --- Estilos de las Cajas (Secciones) --- */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
 
-    nav a {
-      color: var(--blanco);
-      text-decoration: none;
-      font-weight: bold;
-      margin: 0 15px;
-      font-size: 1.1em;
-    }
+    section {
+      background: white;
+      padding: 40px;
+      margin-bottom: 50px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
 
-    nav a:hover {
-      color: var(--rojo-tkd); /* Cambia a rojo al pasar el mouse */
-    }
+    h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5em;
+      color: var(--azul-tkd);
+      border-left: 8px solid var(--rojo-tkd);
+      padding-left: 15px;
+    }
 
-    /* --- Estilos del Encabezado (Hero) --- */
-    header {
-      background-color: #222; 
-      /* SI TIENES UNA FOTO DE FONDO, PONLA AQUI ABAJO EN LUGAR DE 'fondo.jpg' */
-      background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('fondo_tkd.jpg');
-      background-size: cover;
-      color: white;
-      text-align: center;
-      padding: 80px 20px;
-    }
+    /* --- Botones y Redes Sociales --- */
+    .redes-container {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
 
-    header h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 4em;
-      margin: 0;
-    }
+    /* Estilo del botón de WhatsApp */
+    .btn-whatsapp {
+      background-color: #25D366;
+      color: white;
+      padding: 15px 30px;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 1.2em;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+      display: inline-block;
+    }
 
-    header img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%; /* Esto hace la foto redonda */
-      border: 4px solid white;
-      margin-top: 20px;
-      object-fit: cover;
-    }
+    /* Estilo del botón de Facebook */
+    .btn-facebook {
+      background-color: #1877F2;
+      color: white;
+      padding: 15px 30px;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 1.2em;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+      display: inline-block;
+    }
 
-    /* --- Estilos de las Cajas (Secciones) --- */
-    .container {
-      max-width: 1100px;
-      margin: 0 auto; /* Centra todo el contenido */
-      padding: 40px 20px;
-    }
+    .btn-whatsapp:hover, .btn-facebook:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
 
-    section {
-      background: white;
-      padding: 40px;
-      margin-bottom: 50px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra suave */
-    }
+    /* --- DISEÑO RESPONSIVO DE GALERÍA (La parte importante) --- */
+    
+    /* 1. Base para Celulares (1 columna) */
+    .grid-galeria {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 10px;
+    }
 
-    h2 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.5em;
-      color: var(--azul-tkd);
-      border-left: 8px solid var(--rojo-tkd); /* La barrita de color a la izquierda */
-      padding-left: 15px;
-    }
+    /* 2. Para Computadoras (3 columnas) */
+    @media (min-width: 768px) {
+        .grid-galeria {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
 
-    /* --- Estilos de la Galería (Grid) --- */
-    .grid-galeria {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
+    /* 3. Ajuste de Imágenes */
+    .media-item img, .media-item video, img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 6px;
+        display: block;
+    }
+    
+    /* Ajuste específico para las fotos de perfil de los profes */
+    .perfil-profe {
+        width: 150px !important;
+        height: 150px !important;
+        object-fit: cover;
+        border-radius: 50%;
+    }
 
-    .media-item img, .media-item video {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      border-radius: 6px;
-    }
+    /* --- Tablas y Mapas --- */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    
+    th, td {
+      padding: 15px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+    
+    th {
+      background-color: var(--negro-cinturon);
+      color: white;
+    }
 
-    /* --- Estilos de la Tabla de Clases --- */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    
-    th, td {
-      padding: 15px;
-      border-bottom: 1px solid #ddd;
-      text-align: left;
-    }
-    
-    th {
-      background-color: var(--negro-cinturon);
-      color: white;
-    }
+    .mapa-responsive {
+      width: 100%;
+      height: 400px;
+      border: 0;
+      border-radius: 8px;
+    }
 
-  </style>
-  </head>
+  </style>
+</head>
 <body>
 
-  <nav>
-    <a href="#inicio">Inicio</a>
-    <a href="#que-es">¿Qué es?</a>
-    <a href="#profesores">Profesores</a>
-    <a href="#clases">Horarios</a>
-    <a href="#galeria">Galería</a>
-    <a href="#videos">Videos</a>
-  </nav>
-  <header id="inicio">
-    <h1>Escuela de <span style="color: var(--rojo-tkd);">Taekwondo</span></h1>
-    <p>Disciplina, Respeto y Autocontrol</p>
-    
-    <img src="escudo_tkd.jpg" alt="Logo Escuela">
-    
-    <br><br>
-    <button style="padding: 10px 20px; background: var(--azul-tkd); color: white; border: none; font-size: 1.2em; cursor: pointer;">
-      ¡Únete a la clase!
-    </button>
-  </header>
-  <div class="container">
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#que-es">¿Qué es?</a>
+    <a href="#profesores">Profesores</a>
+    <a href="#clases">Horarios</a>
+    <a href="#galeria">Galería</a>
+    <a href="#videos">Videos</a>
+  </nav>
 
-    <section id="que-es">
-      <h2>¿Qué es el Taekwondo?</h2>
-      <p>
-        El <strong>Taekwondo</strong> es un arte marcial coreano moderno. Se destaca por la variedad y espectacularidad de sus técnicas de patada (chagui).
-      </p>
-      <ul>
-        <li><strong>Tae:</strong> Pie / patada.</li>
-        <li><strong>Kwon:</strong> Puño / bloqueo.</li>
-        <li><strong>Do:</strong> Camino / filosofía.</li>
-      </ul>
-      <p>Aquí forjamos carácter a través del esfuerzo físico y mental.</p>
-    </section>
-    <section id="profesores">
-      <h2>Nuestros Profesores</h2>
-      
-      <div class="grid-galeria">
-        
-        <div style="text-align: center; border: 1px solid #ccc; padding: 20px; border-radius: 8px;">
-          <img src="profesor_1.png" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;" alt="Foto Profesor 1">
-          <h3>Sabonim Baruch Otto Diaz Ordaz</h3>
-          <p><strong>Cinta Negra 6° Dan</strong></p>
-          <p>Especialista en combate </p>
-        </div>
+  <header id="inicio">
+    <h1>Escuela de <span style="color: var(--rojo-tkd);">Taekwondo</span></h1>
+    <p>Disciplina, Respeto y Autocontrol</p>
+    
+    <img src="escudo_tkd.jpg" alt="Logo Escuela">
+    
+    <br><br>
+    <button style="padding: 10px 20px; background: var(--azul-tkd); color: white; border: none; font-size: 1.2em; cursor: pointer; border-radius: 5px;">
+      ¡Únete a la clase!
+    </button>
+  </header>
 
-        <div style="text-align: center; border: 1px solid #ccc; padding: 20px; border-radius: 8px;">
-          <img src="profesor_2.jpeg" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;" alt="Foto Profesor 2">
-          <h3>Profesora Evelyn Shaiel Diaz Jarquin</h3>
-          <p><strong>Cinta Negra 3° Dan</strong></p>
-          <p>Instructor de grupos infantiles.</p>
-        </div>
+  <div class="container">
 
-      </div>
-    </section>
-    <section id="clases">
-      <h2>Horarios de Clase</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Grupo</th> <th>Días</th>  <th>Hora</th>  </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>BLOQUE 1</td>
-            <td>Toda la semana</td>
-            <td>5:00 PM a 6:00 PM</td>
-            
-          </tr>
-          <tr>
-           
-            <td>BLOQUE 2</td>
-            <td>Toda la semana</td>
-            <td>6:00 PM a 7:00 PM</td>
-          </tr>
-          <tr>
-           <td>BLOQUE 3</td>
-            <td>Toda la semana</td>
-            <td>7:00 PM a 8:00 PM</td>
-          </tr>
-          <tr>
-           <td>BLOQUE 4</td>
-            <td>Toda la semana</td>
-            <td>8:00 PM a 9:00 PM</td>
-          </tr>
+    <section id="que-es">
+      <h2>¿Qué es el Taekwondo?</h2>
+      <p>
+        El <strong>Taekwondo</strong> es un arte marcial coreano moderno. Se destaca por la variedad y espectacularidad de sus técnicas de patada (chagui).
+      </p>
+      <ul>
+        <li><strong>Tae:</strong> Pie / patada.</li>
+        <li><strong>Kwon:</strong> Puño / bloqueo.</li>
+        <li><strong>Do:</strong> Camino / filosofía.</li>
+      </ul>
+      <p>Aquí forjamos carácter a través del esfuerzo físico y mental.</p>
+    </section>
 
-        </tbody>
-      </table>
-    </section>
-    <section id="galeria">
-      <h2>Galería de Fotos</h2>
-      <div class="grid-galeria">
-        
-        <div class="media-item">
-          <img src="copa.jpg" alt="Torneo Copa">
-        </div>
-        
-        <div class="media-item">
-          <img src="grupo.png" alt="Foto Grupal">
-        </div>
+    <section id="profesores">
+      <h2>Nuestros Profesores</h2>
+      
+      <div class="grid-galeria">
+        
+        <div style="text-align: center; border: 1px solid #ccc; padding: 20px; border-radius: 8px;">
+          <img src="profesor_1.png" class="perfil-profe" alt="Foto Profesor 1">
+          <h3>Sabonim Baruch Otto Diaz Ordaz</h3>
+          <p><strong>Cinta Negra 6° Dan</strong></p>
+          <p>Especialista en combate</p>
+        </div>
 
-        <div class="media-item">
-          <img src="FB_IMG_1719383198514.jpg" alt="Entrenamiento">
-        </div>
+        <div style="text-align: center; border: 1px solid #ccc; padding: 20px; border-radius: 8px;">
+          <img src="profesor_2.jpeg" class="perfil-profe" alt="Foto Profesor 2">
+          <h3>Profesora Evelyn Shaiel Diaz Jarquin</h3>
+          <p><strong>Cinta Negra 3° Dan</strong></p>
+          <p>Instructor de grupos infantiles.</p>
+        </div>
 
-        <div class="media-item">
-          <img src="IMG-20241019-WA0012.jpg" alt="Competencia">
-        </div>
+      </div>
+    </section>
 
-      </div>
-    </section>
-    <section id="videos">
-      <h2>Videos de Entrenamiento</h2>
-      <div class="grid-galeria">
-        
-        <div class="media-item">
-          <video controls>
-            <source src="VID-20241112-WA0017.mp4" type="video/mp4">
-          </video>
-        </div>
+    <section id="clases">
+      <h2>Horarios de Clase</h2>
+      <div style="overflow-x:auto;">
+          <table>
+            <thead>
+              <tr>
+                <th>Grupo</th> <th>Días</th>  <th>Hora</th>  </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>BLOQUE 1</td>
+                <td>Toda la semana</td>
+                <td>5:00 PM a 6:00 PM</td>
+              </tr>
+              <tr>
+                <td>BLOQUE 2</td>
+                <td>Toda la semana</td>
+                <td>6:00 PM a 7:00 PM</td>
+              </tr>
+              <tr>
+               <td>BLOQUE 3</td>
+                <td>Toda la semana</td>
+                <td>7:00 PM a 8:00 PM</td>
+              </tr>
+              <tr>
+               <td>BLOQUE 4</td>
+                <td>Toda la semana</td>
+                <td>8:00 PM a 9:00 PM</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </section>
 
-        <div class="media-item">
-          <video controls>
-            <source src="lv_0_20240527182720.mp4" type="video/mp4">
-          </video>
-        </div>
+    <section id="galeria">
+      <h2>Galería de Fotos</h2>
+      <div class="grid-galeria">
+        
+        <div class="media-item">
+          <img src="copa.jpg" alt="Torneo Copa">
+        </div>
+        
+        <div class="media-item">
+          <img src="grupo.png" alt="Foto Grupal">
+        </div>
 
-      </div>
-    </section>
-    <section id="contacto">
-      <h2>¡Entrena con nosotros!</h2>
-      <p style="text-align: center; font-size: 1.2em;">
-        ¿Tienes dudas sobre las clases o costos? Mándanos un mensaje directo.
-      </p>
+        <div class="media-item">
+          <img src="FB_IMG_1719383198514.jpg" alt="Entrenamiento">
+        </div>
 
-      <div class="redes-container">
-        
-        <a href="https://wa.me/5219515265175?text=Hola,%20quisiera%20informes%20sobre%20las%20clases%20de%20Taekwondo" 
-           class="btn-whatsapp" 
-           target="_blank">
-           💬 Enviar WhatsApp
-        </a>
+        <div class="media-item">
+          <img src="IMG-20241019-WA0012.jpg" alt="Competencia">
+        </div>
 
-        <a href="https://www.facebook.com/tkdsantalucia" 
-           class="btn-facebook" 
-           target="_blank">
-           f Facebook
-        </a>
+      </div>
+    </section>
 
-      </div>
-    </section>
-    <section id="ubicacion">
-      <h2>Nuestra Ubicación</h2>
-      <p>Ubicado en planta alta en Av. Lázaro Cárdenas 1803, El bosque Sur, 71244 Santa Lucía del Camino.</p>
+    <section id="videos">
+      <h2>Videos de Entrenamiento</h2>
+      <div class="grid-galeria">
+        
+        <div class="media-item">
+          <video controls style="width:100%">
+            <source src="VID-20241112-WA0017.mp4" type="video/mp4">
+          </video>
+        </div>
 
-     <iframe 
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3813.626248358466!2d-96.7099786!3d17.0660639!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c72199026338b5%3A0x67bd3bdce79028d8!2sAv.%20L%C3%A1zaro%20C%C3%A1rdenas%201803%2C%2071244%20Santa%20Luc%C3%ADa%20del%20Camino%2C%20Oax.!5e0!3m2!1ses-419!2smx!4v1700000000000!5m2!1ses-419!2smx" 
-  class="mapa-responsive" 
-  allowfullscreen="" 
-  loading="lazy" 
-  referrerpolicy="no-referrer-when-downgrade">
-</iframe>
+        <div class="media-item">
+          <video controls style="width:100%">
+            <source src="lv_0_20240527182720.mp4" type="video/mp4">
+          </video>
+        </div>
 
-    </section>
+      </div>
+    </section>
 
+    <section id="contacto">
+      <h2>¡Entrena con nosotros!</h2>
+      <p style="text-align: center; font-size: 1.2em;">
+        ¿Tienes dudas sobre las clases o costos? Mándanos un mensaje directo.
+      </p>
 
+      <div class="redes-container">
+        
+        <a href="https://wa.me/5219515265175?text=Hola,%20quisiera%20informes%20sobre%20las%20clases%20de%20Taekwondo" 
+           class="btn-whatsapp" 
+           target="_blank">
+           💬 Enviar WhatsApp
+        </a>
 
+        <a href="https://www.facebook.com/tkdsantalucia" 
+           class="btn-facebook" 
+           target="_blank">
+           f Facebook
+        </a>
 
-    </div> <footer style="background: #111; color: white; text-align: center; padding: 20px; margin-top: 40px;">
-    <p>Escuela de Taekwondo - Oaxaca, México</p>
-    <p>&copy; By : 2025 Yossef Karami</p>
-  </footer>
-  </body>
+      </div>
+    </section>
+
+    <section id="ubicacion">
+      <h2>Nuestra Ubicación</h2>
+      <p>Ubicado en planta alta en Av. Lázaro Cárdenas 1803, El bosque Sur, 71244 Santa Lucía del Camino.</p>
+
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3813.681816521576!2d-96.7028!3d17.0628!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDAzJzQ2LjEiTiA5NsKwNDInMTAuMSJX!5e0!3m2!1ses!2smx!4v1600000000000!5m2!1ses!2smx" 
+        class="mapa-responsive" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+
+    </section>
+
+  </div> 
+  
+  <footer style="background: #111; color: white; text-align: center; padding: 20px; margin-top: 40px;">
+    <p>Escuela de Taekwondo - Oaxaca, México</p>
+    <p>© 2025 Yossef Jarquin - Todos los derechos reservados</p>
+  </footer>
+
+</body>
 </html>

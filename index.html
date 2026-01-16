@@ -42,7 +42,7 @@
       color: var(--blanco);
       text-decoration: none;
       font-weight: bold;
-      margin: 0 10px; /* Un poco menos de margen para que quepan todos */
+      margin: 0 10px;
       font-size: 1em;
       transition: color 0.3s;
     }
@@ -111,7 +111,7 @@
       margin-top: 0;
     }
 
-    /* --- Estilos FAQ (Preguntas Frecuentes) --- */
+    /* --- FAQ Styles --- */
     .faq-item {
         border-bottom: 1px solid #eee;
         padding: 15px 0;
@@ -130,7 +130,7 @@
         line-height: 1.6;
     }
 
-    /* --- Estilos Galería Deslizable --- */
+    /* --- Galería Deslizable --- */
     .galeria-deslizable {
         display: flex;
         overflow-x: auto;
@@ -140,7 +140,6 @@
         scrollbar-width: thin;
         scrollbar-color: var(--azul-tkd) #ddd;
     }
-
     .galeria-deslizable::-webkit-scrollbar { height: 10px; }
     .galeria-deslizable::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
     .galeria-deslizable::-webkit-scrollbar-thumb { background: var(--azul-tkd); border-radius: 10px; }
@@ -194,12 +193,23 @@
 
     /* --- Botones Generales --- */
     .redes-container { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+    
     .btn-facebook {
       background-color: #1877F2; color: white; padding: 15px 30px;
       text-decoration: none; border-radius: 50px; font-weight: bold;
       box-shadow: 0 4px 6px rgba(0,0,0,0.2); transition: transform 0.2s;
     }
     .btn-facebook:hover { transform: scale(1.05); }
+
+    /* ESTILO BOTÓN YOUTUBE */
+    .btn-youtube {
+      background-color: #FF0000; /* Rojo */
+      color: white; padding: 15px 30px;
+      text-decoration: none; border-radius: 50px; font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2); transition: transform 0.2s;
+    }
+    .btn-youtube:hover { transform: scale(1.05); }
+
 
     .mapa-responsive { width: 100%; height: 400px; border: 0; border-radius: 8px; }
 
@@ -357,12 +367,18 @@
       </div>
     </section>
 
-    <section id="contacto">
+   <section id="contacto">
       <h2>¡Síguenos!</h2>
       <div class="redes-container">
+        
         <a href="https://www.facebook.com/tkdsantalucia" class="btn-facebook" target="_blank">
            f Facebook
         </a>
+
+        <a href="https://www.youtube.com/@altacompetenciataekwondooa3977/featured" class="btn-youtube" target="_blank">
+           ▶ Youtube
+        </a>
+
       </div>
     </section>
 

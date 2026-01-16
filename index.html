@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Escuela de Taekwondo | Disciplina y Honor</title>
+  
+  <link rel="icon" href="escudo_tkd.jpg">
 
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
 
@@ -40,8 +42,8 @@
       color: var(--blanco);
       text-decoration: none;
       font-weight: bold;
-      margin: 0 15px;
-      font-size: 1.1em;
+      margin: 0 10px; /* Un poco menos de margen para que quepan todos */
+      font-size: 1em;
       transition: color 0.3s;
     }
 
@@ -52,7 +54,6 @@
     /* --- Encabezado --- */
     header {
       background-color: #222; 
-      /* Asegúrate que la imagen fondo_tkd.jpg esté en tu carpeta */
       background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('fondo_tkd.jpg');
       background-size: cover;
       background-position: center;
@@ -110,7 +111,26 @@
       margin-top: 0;
     }
 
-    /* --- Galería Deslizable --- */
+    /* --- Estilos FAQ (Preguntas Frecuentes) --- */
+    .faq-item {
+        border-bottom: 1px solid #eee;
+        padding: 15px 0;
+    }
+    .faq-item:last-child { border-bottom: none; }
+    
+    .faq-item h3 {
+        color: var(--negro-cinturon);
+        font-size: 1.3em;
+        margin-bottom: 5px;
+        cursor: pointer;
+    }
+    
+    .faq-item p {
+        color: #555;
+        line-height: 1.6;
+    }
+
+    /* --- Estilos Galería Deslizable --- */
     .galeria-deslizable {
         display: flex;
         overflow-x: auto;
@@ -126,7 +146,7 @@
     .galeria-deslizable::-webkit-scrollbar-thumb { background: var(--azul-tkd); border-radius: 10px; }
 
     .media-item {
-        flex: 0 0 70%; /* En celular se ve parte de la siguiente foto */
+        flex: 0 0 70%; 
         scroll-snap-align: center;
         border-radius: 10px;
         overflow: hidden;
@@ -135,37 +155,23 @@
     }
 
     @media (min-width: 768px) {
-        .media-item {
-            flex: 0 0 300px; /* Tamaño fijo en PC */
-        }
-        .media-item:hover {
-            transform: scale(1.05);
-            cursor: pointer;
-        }
+        .media-item { flex: 0 0 300px; }
+        .media-item:hover { transform: scale(1.05); cursor: pointer; }
     }
 
     .media-item img, .media-item video {
-        width: 100%;
-        height: 250px;
-        object-fit: cover;
-        display: block;
+        width: 100%; height: 250px; object-fit: cover; display: block;
     }
 
     /* --- Profesores --- */
     .perfil-profe {
-        width: 150px !important;
-        height: 150px !important;
-        object-fit: cover;
-        border-radius: 50%;
-        margin-bottom: 15px;
-        border: 3px solid var(--azul-tkd);
+        width: 150px !important; height: 150px !important;
+        object-fit: cover; border-radius: 50%;
+        margin-bottom: 15px; border: 3px solid var(--azul-tkd);
     }
-    
     .grid-profesores {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-        text-align: center;
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px; text-align: center;
     }
 
     /* --- Tabla --- */
@@ -174,36 +180,20 @@
     th { background-color: var(--negro-cinturon); color: white; }
     tr:nth-child(even) {background-color: #f9f9f9;}
 
-    /* --- Botón Flotante de WhatsApp (Visible y Seguro) --- */
+    /* --- Botón Flotante WA --- */
     .btn-flotante-wa {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        background-color: #25D366;
-        color: white;
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        text-align: center;
-        box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-        z-index: 2000;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-decoration: none;
-        font-size: 30px; /* Tamaño del icono */
-        transition: transform 0.3s;
+        position: fixed; bottom: 30px; right: 30px;
+        background-color: #25D366; color: white;
+        width: 60px; height: 60px; border-radius: 50%;
+        text-align: center; box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        z-index: 2000; display: flex; justify-content: center;
+        align-items: center; text-decoration: none;
+        font-size: 30px; transition: transform 0.3s;
     }
+    .btn-flotante-wa:hover { transform: scale(1.1); background-color: #128C7E; }
 
-    .btn-flotante-wa:hover {
-        transform: scale(1.1);
-        background-color: #128C7E;
-    }
-
-    /* --- Botones Redes Sociales (Sección Contacto) --- */
-    .redes-container {
-      display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 20px;
-    }
+    /* --- Botones Generales --- */
+    .redes-container { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
     .btn-facebook {
       background-color: #1877F2; color: white; padding: 15px 30px;
       text-decoration: none; border-radius: 50px; font-weight: bold;
@@ -222,8 +212,7 @@
     <a href="#que-es">¿Qué es?</a>
     <a href="#profesores">Profesores</a>
     <a href="#clases">Horarios</a>
-    <a href="#galeria">Galería</a>
-    <a href="#videos">Videos</a>
+    <a href="#faq">Preguntas</a> <a href="#registro">Inscripción</a> <a href="#ubicacion">Ubicación</a>
   </nav>
 
   <header id="inicio">
@@ -235,9 +224,9 @@
         <img src="escudo_tkd.jpg" alt="Logo Escuela">
         
         <br><br>
-        <button style="padding: 12px 25px; background: var(--azul-tkd); color: white; border: none; font-size: 1.2em; cursor: pointer; border-radius: 50px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
-        ¡Únete a la clase!
-        </button>
+        <a href="#registro" style="padding: 12px 25px; background: var(--azul-tkd); color: white; border: none; font-size: 1.2em; text-decoration:none; border-radius: 50px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); display:inline-block;">
+        ¡Inscríbete hoy!
+        </a>
     </div>
   </header>
 
@@ -245,15 +234,12 @@
 
     <section id="que-es">
       <h2>¿Qué es el Taekwondo?</h2>
-      <p>
-        El <strong>Taekwondo</strong> es un arte marcial coreano moderno. Se destaca por la variedad y espectacularidad de sus técnicas de patada (chagui).
-      </p>
+      <p>El <strong>Taekwondo</strong> es un arte marcial coreano moderno. Se destaca por la variedad y espectacularidad de sus técnicas de patada.</p>
       <ul>
         <li><strong>Tae:</strong> Pie / patada.</li>
         <li><strong>Kwon:</strong> Puño / bloqueo.</li>
         <li><strong>Do:</strong> Camino / filosofía.</li>
       </ul>
-      <p>Aquí forjamos carácter a través del esfuerzo físico y mental.</p>
     </section>
 
     <section id="profesores">
@@ -292,19 +278,18 @@
     </section>
 
     <section id="galeria">
-      <h2>Galería de Fotos 📸</h2>
-      <p><em>Desliza para ver más fotos →</em></p>
-      <div class="galeria-deslizable">
+      <h2>Galería y Videos </h2>
+      <p><em>Desliza para ver más →</em></p>
+      
+      <h3>Fotos</h3>
+      <div class="galeria-deslizable" style="margin-bottom: 30px;">
         <div class="media-item"><img src="copa.jpg" alt="Torneo Copa"></div>
         <div class="media-item"><img src="grupo.png" alt="Foto Grupal"></div>
         <div class="media-item"><img src="FB_IMG_1719383198514.jpg" alt="Entrenamiento"></div>
         <div class="media-item"><img src="IMG-20241019-WA0012.jpg" alt="Competencia"></div>
       </div>
-    </section>
 
-    <section id="videos">
-      <h2>Videos de Entrenamiento 🎥</h2>
-      <p><em>Desliza para ver más videos →</em></p>
+      <h3>Videos</h3>
       <div class="galeria-deslizable">
         <div class="media-item">
           <video controls><source src="VID-20241112-WA0017.mp4" type="video/mp4"></video>
@@ -315,11 +300,43 @@
       </div>
     </section>
 
+    <section id="faq">
+      <h2>Preguntas Frecuentes (FAQ)</h2>
+      
+      <div class="faq-item">
+        <h3> ¿A qué edad pueden empezar los niños?</h3>
+        <p>Aceptamos alumnos desde los 4 años en adelante. Tenemos grupos especiales para preescolares.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3> ¿Necesito comprar el uniforme para la primera clase?</h3>
+        <p>¡No es necesario! Para tu clase de prueba, ven con ropa deportiva cómoda (pants y playera). El uniforme (Dobok) se adquiere una vez que te inscribas formalmente.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3> ¿Cuáles son los costos de inscripción?</h3>
+        <p>Manejamos diferentes paquetes y promociones familiares. Por favor contáctanos por WhatsApp para darte la información más actual.</p>
+      </div>
+    </section>
+
+    <section id="registro">
+      <h2>Pre-inscripción en Línea</h2>
+      <p style="text-align: center;">Llena este formulario y nosotros nos pondremos en contacto contigo para agendar tu clase de prueba.</p>
+      
+      <div style="width: 100%; height: 600px; overflow: hidden; border-radius: 8px; margin-top: 20px;">
+        
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdcYw2YyW6ZpPzG5YwQ5YwQ5YwQ5YwQ5/viewform?embedded=true" 
+                width="100%" 
+                height="800" 
+                frameborder="0" 
+                marginheight="0" 
+                marginwidth="0">Cargando…</iframe>
+      
+      </div>
+    </section>
+
     <section id="contacto">
-      <h2>¡Entrena con nosotros!</h2>
-      <p style="text-align: center; font-size: 1.2em;">
-        ¿Tienes dudas sobre las clases o costos? Mándanos un mensaje directo.
-      </p>
+      <h2>¡Síguenos!</h2>
       <div class="redes-container">
         <a href="https://www.facebook.com/tkdsantalucia" class="btn-facebook" target="_blank">
            f Facebook
@@ -336,9 +353,7 @@
   </div> 
 
   <a href="https://wa.me/5219515265175?text=Hola,%20quisiera%20informes%20sobre%20las%20clases%20de%20Taekwondo" 
-     class="btn-flotante-wa" 
-     target="_blank"
-     title="Enviar WhatsApp">
+     class="btn-flotante-wa" target="_blank" title="Enviar WhatsApp">
      💬
   </a>
   

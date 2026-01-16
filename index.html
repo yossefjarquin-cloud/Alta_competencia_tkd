@@ -23,6 +23,21 @@
       color: var(--negro-cinturon);
       margin: 0;
       padding: 0;
+      overflow-x: hidden; /* Evita scroll horizontal indeseado por animaciones */
+    }
+
+    /* --- Animaciones (El truco mágico) --- */
+    /* Clase para ocultar elementos antes de que aparezcan */
+    .oculto {
+      opacity: 0;
+      transform: translateY(50px); /* Empieza 50px más abajo */
+      transition: all 1s ease-out; /* Tarda 1 segundo en subir suavemente */
+    }
+
+    /* Clase que se agrega automáticamente con Javascript cuando bajas */
+    .mostrar {
+      opacity: 1;
+      transform: translateY(0); /* Vuelve a su lugar original */
     }
 
     /* --- Navegación --- */
@@ -96,8 +111,8 @@
       background: white;
       padding: 40px;
       margin-bottom: 50px;
-      border-radius: 15px; /* Bordes más redondeados */
-      box-shadow: 0 10px 25px rgba(0,0,0,0.05); /* Sombra más elegante */
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
     }
 
     h2 {
@@ -109,51 +124,34 @@
       margin-top: 0;
     }
 
-    /* --- NUEVA GALERÍA DESLIZABLE (CARRUSEL) --- */
+    /* --- Galería Deslizable --- */
     .galeria-deslizable {
-        display: flex; /* Pone los elementos en fila */
-        overflow-x: auto; /* Permite deslizar horizontalmente */
-        scroll-snap-type: x mandatory; /* Efecto "imán" */
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
         gap: 20px;
-        padding-bottom: 20px; /* Espacio para la barra de scroll */
-        
-        /* Estilizar la barra de scroll (Firefox) */
+        padding-bottom: 20px;
         scrollbar-width: thin;
         scrollbar-color: var(--azul-tkd) #ddd;
     }
 
-    /* Estilizar la barra de scroll (Chrome, Edge, Safari) */
-    .galeria-deslizable::-webkit-scrollbar {
-        height: 10px;
-    }
-    .galeria-deslizable::-webkit-scrollbar-track {
-        background: #f1f1f1;
-        border-radius: 10px;
-    }
-    .galeria-deslizable::-webkit-scrollbar-thumb {
-        background: var(--azul-tkd);
-        border-radius: 10px;
-    }
-    .galeria-deslizable::-webkit-scrollbar-thumb:hover {
-        background: var(--rojo-tkd);
-    }
+    .galeria-deslizable::-webkit-scrollbar { height: 10px; }
+    .galeria-deslizable::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+    .galeria-deslizable::-webkit-scrollbar-thumb { background: var(--azul-tkd); border-radius: 10px; }
 
-    /* Estilos de cada tarjeta de foto/video */
     .media-item {
-        flex: 0 0 85%; /* En celular, la foto ocupa el 85% del ancho */
-        scroll-snap-align: center; /* Se centra automáticamente */
+        flex: 0 0 70%; /* Ajustado a 70% para invitar a deslizar */
+        scroll-snap-align: center;
         border-radius: 10px;
         overflow: hidden;
         box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         transition: transform 0.3s ease;
     }
 
-    /* En PC, las fotos son más pequeñas para ver varias a la vez */
     @media (min-width: 768px) {
         .media-item {
-            flex: 0 0 300px; /* Ancho fijo en PC */
+            flex: 0 0 300px;
         }
-        /* Efecto Zoom al pasar el mouse (Solo en PC) */
         .media-item:hover {
             transform: scale(1.05);
             cursor: pointer;
@@ -162,12 +160,11 @@
 
     .media-item img, .media-item video {
         width: 100%;
-        height: 250px; /* Altura fija para que todas sean iguales */
-        object-fit: cover; /* Recorta la imagen para que llene el espacio sin deformarse */
+        height: 250px;
+        object-fit: cover;
         display: block;
     }
 
-    /* Estilos específicos para los profes (círculos) */
     .perfil-profe {
         width: 150px !important;
         height: 150px !important;
@@ -177,7 +174,6 @@
         border: 3px solid var(--azul-tkd);
     }
     
-    /* Contenedor especial para profes (Grid normal, no deslizable, para verlos mejor) */
     .grid-profesores {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -185,62 +181,55 @@
         text-align: center;
     }
 
-    /* --- Tabla de Horarios --- */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    
-    th, td {
-      padding: 15px;
-      border-bottom: 1px solid #ddd;
-      text-align: left;
-    }
-    
-    th {
-      background-color: var(--negro-cinturon);
-      color: white;
-    }
-    
-    /* Filas alternadas (Gebra striping) */
+    /* --- Tabla --- */
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { padding: 15px; border-bottom: 1px solid #ddd; text-align: left; }
+    th { background-color: var(--negro-cinturon); color: white; }
     tr:nth-child(even) {background-color: #f9f9f9;}
 
-    /* --- Botones --- */
+    /* --- Botón Flotante de WhatsApp (Estilo Nuevo) --- */
+    .btn-flotante-wa {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-color: #25D366;
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        text-align: center;
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        z-index: 2000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: transform 0.3s;
+    }
+
+    .btn-flotante-wa:hover {
+        transform: scale(1.1); /* Se agranda al pasar el mouse */
+        background-color: #128C7E;
+    }
+
+    /* Icono SVG de WhatsApp dentro del botón */
+    .btn-flotante-wa svg {
+        width: 35px;
+        height: 35px;
+        fill: white;
+    }
+
+    /* --- Botones normales --- */
     .redes-container {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 20px;
+      display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 20px;
     }
-
-    .btn-whatsapp, .btn-facebook {
-      color: white;
-      padding: 15px 30px;
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: bold;
-      font-size: 1.2em;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      transition: transform 0.2s;
-      display: inline-block;
+    .btn-facebook {
+      background-color: #1877F2; color: white; padding: 15px 30px;
+      text-decoration: none; border-radius: 50px; font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2); transition: transform 0.2s;
     }
+    .btn-facebook:hover { transform: scale(1.05); }
 
-    .btn-whatsapp { background-color: #25D366; }
-    .btn-facebook { background-color: #1877F2; }
-
-    .btn-whatsapp:hover, .btn-facebook:hover {
-      transform: scale(1.05);
-      opacity: 0.9;
-    }
-
-    .mapa-responsive {
-      width: 100%;
-      height: 400px;
-      border: 0;
-      border-radius: 8px;
-    }
+    .mapa-responsive { width: 100%; height: 400px; border: 0; border-radius: 8px; }
 
   </style>
 </head>
@@ -256,21 +245,23 @@
   </nav>
 
   <header id="inicio">
-    <h1>Escuela de <span style="color: var(--rojo-tkd);">Taekwondo</span></h1>
-    <p class="frase-coreana">정신 바짝 차리면 불가능한 것도 할 수 있다</p>
-    <p>Disciplina, Respeto y Autocontrol</p>
-    
-    <img src="escudo_tkd.jpg" alt="Logo Escuela">
-    
-    <br><br>
-    <button style="padding: 12px 25px; background: var(--azul-tkd); color: white; border: none; font-size: 1.2em; cursor: pointer; border-radius: 50px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
-      ¡Únete a la clase!
-    </button>
+    <div class="oculto">
+        <h1>Escuela de <span style="color: var(--rojo-tkd);">Taekwondo</span></h1>
+        <p class="frase-coreana">정신 바짝 차리면 불가능한 것도 할 수 있다</p>
+        <p>Disciplina, Respeto y Autocontrol</p>
+        
+        <img src="escudo_tkd.jpg" alt="Logo Escuela">
+        
+        <br><br>
+        <button style="padding: 12px 25px; background: var(--azul-tkd); color: white; border: none; font-size: 1.2em; cursor: pointer; border-radius: 50px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+        ¡Únete a la clase!
+        </button>
+    </div>
   </header>
 
   <div class="container">
 
-    <section id="que-es">
+    <section id="que-es" class="oculto">
       <h2>¿Qué es el Taekwondo?</h2>
       <p>
         El <strong>Taekwondo</strong> es un arte marcial coreano moderno. Se destaca por la variedad y espectacularidad de sus técnicas de patada (chagui).
@@ -283,152 +274,87 @@
       <p>Aquí forjamos carácter a través del esfuerzo físico y mental.</p>
     </section>
 
-    <section id="profesores">
+    <section id="profesores" class="oculto">
       <h2>Nuestros Profesores</h2>
-      
       <div class="grid-profesores">
-        
-        <div style="border: 1px solid #eee; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+        <div style="border: 1px solid #eee; padding: 20px; border-radius: 10px;">
           <img src="profesor_1.png" class="perfil-profe" alt="Foto Profesor 1">
           <h3>Sabonim Baruch Otto Diaz Ordaz</h3>
           <p style="color: var(--rojo-tkd);"><strong>Cinta Negra 6° Dan</strong></p>
           <p>Especialista en combate</p>
         </div>
-
-        <div style="border: 1px solid #eee; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+        <div style="border: 1px solid #eee; padding: 20px; border-radius: 10px;">
           <img src="profesor_2.jpeg" class="perfil-profe" alt="Foto Profesor 2">
           <h3>Profesora Evelyn Shaiel Diaz Jarquin</h3>
           <p style="color: var(--rojo-tkd);"><strong>Cinta Negra 3° Dan</strong></p>
           <p>Instructor de grupos infantiles.</p>
         </div>
-
       </div>
     </section>
 
-    <section id="clases">
+    <section id="clases" class="oculto">
       <h2>Horarios de Clase</h2>
       <div style="overflow-x:auto;">
           <table>
             <thead>
-              <tr>
-                <th>Grupo</th> <th>Días</th>  <th>Hora</th>  </tr>
+              <tr> <th>Grupo</th> <th>Días</th>  <th>Hora</th>  </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>BLOQUE 1</td>
-                <td>Lunes a Viernes</td>
-                <td>5:00 PM a 6:00 PM</td>
-              </tr>
-              <tr>
-                <td>BLOQUE 2 </td>
-                <td>Lunes a Viernes</td>
-                <td>6:00 PM a 7:00 PM</td>
-              </tr>
-              <tr>
-               <td>BLOQUE 3 </td>
-                <td>Lunes a Viernes</td>
-                <td>7:00 PM a 8:00 PM</td>
-              </tr>
-              <tr>
-               <td>BLOQUE 4 </td>
-                <td>Lunes a Viernes</td>
-                <td>8:00 PM a 9:00 PM</td>
-              </tr>
+              <tr><td>BLOQUE 1</td><td>Lunes a Viernes</td><td>5:00 PM a 6:00 PM</td></tr>
+              <tr><td>BLOQUE 2</td><td>Lunes a Viernes</td><td>6:00 PM a 7:00 PM</td></tr>
+              <tr><td>BLOQUE 3</td><td>Lunes a Viernes</td><td>7:00 PM a 8:00 PM</td></tr>
+              <tr><td>BLOQUE 4</td><td>Lunes a Viernes</td><td>8:00 PM a 9:00 PM</td></tr>
             </tbody>
           </table>
       </div>
     </section>
 
-    <section id="galeria">
+    <section id="galeria" class="oculto">
       <h2>Galería de Fotos </h2>
-      <p><em>Desliza para ver más fotos &rarr;</em></p>
-      
+      <p><em>Desliza para ver más fotos →</em></p>
       <div class="galeria-deslizable">
-        
-        <div class="media-item">
-          <img src="copa.jpg" alt="Torneo Copa">
-        </div>
-        
-        <div class="media-item">
-          <img src="grupo.png" alt="Foto Grupal">
-        </div>
-
-        <div class="media-item">
-          <img src="FB_IMG_1719383198514.jpg" alt="Entrenamiento">
-        </div>
-
-        <div class="media-item">
-          <img src="IMG-20241019-WA0012.jpg" alt="Competencia">
-        </div>
-        
-        </div>
-    </section>
-
-    <section id="videos">
-      <h2>Videos de Entrenamiento </h2>
-      <p><em>Desliza para ver más videos &rarr;</em></p>
-      
-      <div class="galeria-deslizable">
-        
-        <div class="media-item">
-          <video controls>
-            <source src="VID-20241112-WA0017.mp4" type="video/mp4">
-            Tu navegador no soporta videos.
-          </video>
-        </div>
-
-        <div class="media-item">
-          <video controls>
-            <source src="lv_0_20240527182720.mp4" type="video/mp4">
-          </video>
-        </div>
-
+        <div class="media-item"><img src="copa.jpg" alt="Torneo Copa"></div>
+        <div class="media-item"><img src="grupo.png" alt="Foto Grupal"></div>
+        <div class="media-item"><img src="FB_IMG_1719383198514.jpg" alt="Entrenamiento"></div>
+        <div class="media-item"><img src="IMG-20241019-WA0012.jpg" alt="Competencia"></div>
       </div>
     </section>
 
-    <section id="contacto">
+    <section id="videos" class="oculto">
+      <h2>Videos de Entrenamiento </h2>
+      <p><em>Desliza para ver más videos →</em></p>
+      <div class="galeria-deslizable">
+        <div class="media-item">
+          <video controls><source src="VID-20241112-WA0017.mp4" type="video/mp4"></video>
+        </div>
+        <div class="media-item">
+          <video controls><source src="lv_0_20240527182720.mp4" type="video/mp4"></video>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="oculto">
       <h2>¡Entrena con nosotros!</h2>
       <p style="text-align: center; font-size: 1.2em;">
         ¿Tienes dudas sobre las clases o costos? Mándanos un mensaje directo.
       </p>
-
       <div class="redes-container">
-        
-        <a href="https://wa.me/5219515265175?text=Hola,%20quisiera%20informes%20sobre%20las%20clases%20de%20Taekwondo" 
-           class="btn-whatsapp" 
-           target="_blank">
-           💬 Enviar WhatsApp
-        </a>
-
-        <a href="https://www.facebook.com/tkdsantalucia" 
-           class="btn-facebook" 
-           target="_blank">
+        <a href="https://www.facebook.com/tkdsantalucia" class="btn-facebook" target="_blank">
            f Facebook
         </a>
-
       </div>
     </section>
 
-    <section id="ubicacion">
+    <section id="ubicacion" class="oculto">
       <h2>Nuestra Ubicación</h2>
       <p>Ubicado en planta alta en Av. Lázaro Cárdenas 1803, El bosque Sur, 71244 Santa Lucía del Camino.</p>
-
-      <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3813.681816521576!2d-96.7028!3d17.0628!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDAzJzQ2LjEiTiA5NsKwNDInMTAuMSJX!5e0!3m2!1ses!2smx!4v1600000000000!5m2!1ses!2smx" 
-        class="mapa-responsive" 
-        allowfullscreen="" 
-        loading="lazy" 
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3813.681816521576!2d-96.7028!3d17.0628!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDAzJzQ2LjEiTiA5NsKwNDInMTAuMSJX!5e0!3m2!1ses!2smx!4v1600000000000!5m2!1ses!2smx" class="mapa-responsive" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </section>
 
   </div> 
-  
-  <footer style="background: #111; color: white; text-align: center; padding: 20px; margin-top: 40px;">
-    <p>Escuela de Taekwondo - Oaxaca, México</p>
-    <p>© 2025 Yossef Jarquin - Todos los derechos reservados</p>
-  </footer>
 
-</body>
-</html>
+  <a href="https://wa.me/5219515265175?text=Hola,%20quisiera%20informes%20sobre%20las%20clases%20de%20Taekwondo" 
+     class="btn-flotante-wa" 
+     target="_blank">
+     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.

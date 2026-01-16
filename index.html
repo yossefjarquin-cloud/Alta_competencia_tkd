@@ -10,14 +10,13 @@
   <style>
     /* --- Variables de Color --- */
     :root {
-      --azul-tkd: #0047AB;    /* Azul fuerte del peto */
-      --rojo-tkd: #D32F2F;    /* Rojo intenso del peto */
+      --azul-tkd: #0047AB;
+      --rojo-tkd: #D32F2F;
       --negro-cinturon: #1a1a1a;
       --gris-claro: #f5f5f5;
       --blanco: #ffffff;
     }
 
-    /* Estilos generales del cuerpo */
     body {
       font-family: 'Roboto', sans-serif;
       background-color: var(--gris-claro);
@@ -26,7 +25,7 @@
       padding: 0;
     }
 
-    /* --- Estilos del Menú de Navegación --- */
+    /* --- Navegación --- */
     nav {
       background-color: var(--negro-cinturon);
       padding: 15px 0;
@@ -34,6 +33,7 @@
       top: 0;
       z-index: 1000;
       text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
 
     nav a {
@@ -42,17 +42,19 @@
       font-weight: bold;
       margin: 0 15px;
       font-size: 1.1em;
+      transition: color 0.3s;
     }
 
     nav a:hover {
       color: var(--rojo-tkd);
     }
 
-    /* --- Estilos del Encabezado (Hero) --- */
+    /* --- Encabezado --- */
     header {
       background-color: #222; 
       background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('fondo_tkd.jpg');
       background-size: cover;
+      background-position: center;
       color: white;
       text-align: center;
       padding: 80px 20px;
@@ -62,14 +64,14 @@
       font-family: 'Bebas Neue', sans-serif;
       font-size: 4em;
       margin: 0;
+      letter-spacing: 2px;
     }
     
-    /* Estilo para la frase en coreano */
     .frase-coreana {
         font-size: 1.5em;
         font-weight: 300;
         margin-top: 10px;
-        color: #ffeb3b; /* Color amarillo para resaltar */
+        color: #ffeb3b;
         font-style: italic;
     }
 
@@ -80,9 +82,10 @@
       border: 4px solid white;
       margin-top: 20px;
       object-fit: cover;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
     }
 
-    /* --- Estilos de las Cajas (Secciones) --- */
+    /* --- Contenedor Principal --- */
     .container {
       max-width: 1100px;
       margin: 0 auto;
@@ -93,8 +96,8 @@
       background: white;
       padding: 40px;
       margin-bottom: 50px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 15px; /* Bordes más redondeados */
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05); /* Sombra más elegante */
     }
 
     h2 {
@@ -103,77 +106,86 @@
       color: var(--azul-tkd);
       border-left: 8px solid var(--rojo-tkd);
       padding-left: 15px;
+      margin-top: 0;
     }
 
-    /* --- Botones y Redes Sociales --- */
-    .redes-container {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
-
-    .btn-whatsapp {
-      background-color: #25D366;
-      color: white;
-      padding: 15px 30px;
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: bold;
-      font-size: 1.2em;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      transition: transform 0.2s;
-      display: inline-block;
-    }
-
-    .btn-facebook {
-      background-color: #1877F2;
-      color: white;
-      padding: 15px 30px;
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: bold;
-      font-size: 1.2em;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      transition: transform 0.2s;
-      display: inline-block;
-    }
-
-    .btn-whatsapp:hover, .btn-facebook:hover {
-      transform: scale(1.05);
-      opacity: 0.9;
-    }
-
-    /* --- DISEÑO RESPONSIVO DE GALERÍA --- */
-    .grid-galeria {
-        display: grid;
-        grid-template-columns: 1fr;
+    /* --- NUEVA GALERÍA DESLIZABLE (CARRUSEL) --- */
+    .galeria-deslizable {
+        display: flex; /* Pone los elementos en fila */
+        overflow-x: auto; /* Permite deslizar horizontalmente */
+        scroll-snap-type: x mandatory; /* Efecto "imán" */
         gap: 20px;
-        padding: 10px;
+        padding-bottom: 20px; /* Espacio para la barra de scroll */
+        
+        /* Estilizar la barra de scroll (Firefox) */
+        scrollbar-width: thin;
+        scrollbar-color: var(--azul-tkd) #ddd;
     }
 
+    /* Estilizar la barra de scroll (Chrome, Edge, Safari) */
+    .galeria-deslizable::-webkit-scrollbar {
+        height: 10px;
+    }
+    .galeria-deslizable::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+    .galeria-deslizable::-webkit-scrollbar-thumb {
+        background: var(--azul-tkd);
+        border-radius: 10px;
+    }
+    .galeria-deslizable::-webkit-scrollbar-thumb:hover {
+        background: var(--rojo-tkd);
+    }
+
+    /* Estilos de cada tarjeta de foto/video */
+    .media-item {
+        flex: 0 0 85%; /* En celular, la foto ocupa el 85% del ancho */
+        scroll-snap-align: center; /* Se centra automáticamente */
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        transition: transform 0.3s ease;
+    }
+
+    /* En PC, las fotos son más pequeñas para ver varias a la vez */
     @media (min-width: 768px) {
-        .grid-galeria {
-            grid-template-columns: repeat(3, 1fr);
+        .media-item {
+            flex: 0 0 300px; /* Ancho fijo en PC */
+        }
+        /* Efecto Zoom al pasar el mouse (Solo en PC) */
+        .media-item:hover {
+            transform: scale(1.05);
+            cursor: pointer;
         }
     }
 
-    .media-item img, .media-item video, img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 6px;
+    .media-item img, .media-item video {
+        width: 100%;
+        height: 250px; /* Altura fija para que todas sean iguales */
+        object-fit: cover; /* Recorta la imagen para que llene el espacio sin deformarse */
         display: block;
     }
-    
+
+    /* Estilos específicos para los profes (círculos) */
     .perfil-profe {
         width: 150px !important;
         height: 150px !important;
         object-fit: cover;
         border-radius: 50%;
+        margin-bottom: 15px;
+        border: 3px solid var(--azul-tkd);
+    }
+    
+    /* Contenedor especial para profes (Grid normal, no deslizable, para verlos mejor) */
+    .grid-profesores {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        text-align: center;
     }
 
-    /* --- Tablas y Mapas --- */
+    /* --- Tabla de Horarios --- */
     table {
       width: 100%;
       border-collapse: collapse;
@@ -189,6 +201,38 @@
     th {
       background-color: var(--negro-cinturon);
       color: white;
+    }
+    
+    /* Filas alternadas (Gebra striping) */
+    tr:nth-child(even) {background-color: #f9f9f9;}
+
+    /* --- Botones --- */
+    .redes-container {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .btn-whatsapp, .btn-facebook {
+      color: white;
+      padding: 15px 30px;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 1.2em;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+      display: inline-block;
+    }
+
+    .btn-whatsapp { background-color: #25D366; }
+    .btn-facebook { background-color: #1877F2; }
+
+    .btn-whatsapp:hover, .btn-facebook:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
     }
 
     .mapa-responsive {
@@ -213,14 +257,13 @@
 
   <header id="inicio">
     <h1>Escuela de <span style="color: var(--rojo-tkd);">Taekwondo</span></h1>
-    
     <p class="frase-coreana">정신 바짝 차리면 불가능한 것도 할 수 있다</p>
     <p>Disciplina, Respeto y Autocontrol</p>
     
     <img src="escudo_tkd.jpg" alt="Logo Escuela">
     
     <br><br>
-    <button style="padding: 10px 20px; background: var(--azul-tkd); color: white; border: none; font-size: 1.2em; cursor: pointer; border-radius: 5px;">
+    <button style="padding: 12px 25px; background: var(--azul-tkd); color: white; border: none; font-size: 1.2em; cursor: pointer; border-radius: 50px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
       ¡Únete a la clase!
     </button>
   </header>
@@ -243,19 +286,19 @@
     <section id="profesores">
       <h2>Nuestros Profesores</h2>
       
-      <div class="grid-galeria">
+      <div class="grid-profesores">
         
-        <div style="text-align: center; border: 1px solid #ccc; padding: 20px; border-radius: 8px;">
+        <div style="border: 1px solid #eee; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
           <img src="profesor_1.png" class="perfil-profe" alt="Foto Profesor 1">
           <h3>Sabonim Baruch Otto Diaz Ordaz</h3>
-          <p><strong>Cinta Negra 6° Dan</strong></p>
+          <p style="color: var(--rojo-tkd);"><strong>Cinta Negra 6° Dan</strong></p>
           <p>Especialista en combate</p>
         </div>
 
-        <div style="text-align: center; border: 1px solid #ccc; padding: 20px; border-radius: 8px;">
-          <img src="profesor_2.jpeg" class="perfil-profe" alt="Foto Profesor 2">
+        <div style="border: 1px solid #eee; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+          <img src="profesor_2.png" class="perfil-profe" alt="Foto Profesor 2">
           <h3>Profesora Evelyn Shaiel Diaz Jarquin</h3>
-          <p><strong>Cinta Negra 3° Dan</strong></p>
+          <p style="color: var(--rojo-tkd);"><strong>Cinta Negra 3° Dan</strong></p>
           <p>Instructor de grupos infantiles.</p>
         </div>
 
@@ -272,23 +315,23 @@
             </thead>
             <tbody>
               <tr>
-                <td>BLOQUE 1</td>
-                <td>lunes a viernes </td>
+                <td>BLOQUE 1 (Infantil)</td>
+                <td>Lunes a Viernes</td>
                 <td>5:00 PM a 6:00 PM</td>
               </tr>
               <tr>
-                <td>BLOQUE 2</td>
-                <td>lunes a viernes </td>
+                <td>BLOQUE 2 (Principiantes)</td>
+                <td>Lunes a Viernes</td>
                 <td>6:00 PM a 7:00 PM</td>
               </tr>
               <tr>
-               <td>BLOQUE 3</td>
-                <td>lunes a viernes</td>
+               <td>BLOQUE 3 (Avanzados)</td>
+                <td>Lunes a Viernes</td>
                 <td>7:00 PM a 8:00 PM</td>
               </tr>
               <tr>
-               <td>BLOQUE 4</td>
-                <td>lunes a viernes</td>
+               <td>BLOQUE 4 (Adultos)</td>
+                <td>Lunes a Viernes</td>
                 <td>8:00 PM a 9:00 PM</td>
               </tr>
             </tbody>
@@ -297,8 +340,10 @@
     </section>
 
     <section id="galeria">
-      <h2>Galería de Fotos</h2>
-      <div class="grid-galeria">
+      <h2>Galería de Fotos 📸</h2>
+      <p><em>Desliza para ver más fotos &rarr;</em></p>
+      
+      <div class="galeria-deslizable">
         
         <div class="media-item">
           <img src="copa.jpg" alt="Torneo Copa">
@@ -315,22 +360,25 @@
         <div class="media-item">
           <img src="IMG-20241019-WA0012.jpg" alt="Competencia">
         </div>
-
-      </div>
+        
+        </div>
     </section>
 
     <section id="videos">
-      <h2>Videos de Entrenamiento</h2>
-      <div class="grid-galeria">
+      <h2>Videos de Entrenamiento 🎥</h2>
+      <p><em>Desliza para ver más videos &rarr;</em></p>
+      
+      <div class="galeria-deslizable">
         
         <div class="media-item">
-          <video controls style="width:100%">
+          <video controls>
             <source src="VID-20241112-WA0017.mp4" type="video/mp4">
+            Tu navegador no soporta videos.
           </video>
         </div>
 
         <div class="media-item">
-          <video controls style="width:100%">
+          <video controls>
             <source src="lv_0_20240527182720.mp4" type="video/mp4">
           </video>
         </div>

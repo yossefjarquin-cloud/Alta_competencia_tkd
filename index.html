@@ -23,21 +23,6 @@
       color: var(--negro-cinturon);
       margin: 0;
       padding: 0;
-      overflow-x: hidden; /* Evita scroll horizontal indeseado por animaciones */
-    }
-
-    /* --- Animaciones (El truco mágico) --- */
-    /* Clase para ocultar elementos antes de que aparezcan */
-    .oculto {
-      opacity: 0;
-      transform: translateY(50px); /* Empieza 50px más abajo */
-      transition: all 1s ease-out; /* Tarda 1 segundo en subir suavemente */
-    }
-
-    /* Clase que se agrega automáticamente con Javascript cuando bajas */
-    .mostrar {
-      opacity: 1;
-      transform: translateY(0); /* Vuelve a su lugar original */
     }
 
     /* --- Navegación --- */
@@ -67,6 +52,7 @@
     /* --- Encabezado --- */
     header {
       background-color: #222; 
+      /* Asegúrate que la imagen fondo_tkd.jpg esté en tu carpeta */
       background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('fondo_tkd.jpg');
       background-size: cover;
       background-position: center;
@@ -140,7 +126,7 @@
     .galeria-deslizable::-webkit-scrollbar-thumb { background: var(--azul-tkd); border-radius: 10px; }
 
     .media-item {
-        flex: 0 0 70%; /* Ajustado a 70% para invitar a deslizar */
+        flex: 0 0 70%; /* En celular se ve parte de la siguiente foto */
         scroll-snap-align: center;
         border-radius: 10px;
         overflow: hidden;
@@ -150,7 +136,7 @@
 
     @media (min-width: 768px) {
         .media-item {
-            flex: 0 0 300px;
+            flex: 0 0 300px; /* Tamaño fijo en PC */
         }
         .media-item:hover {
             transform: scale(1.05);
@@ -165,6 +151,7 @@
         display: block;
     }
 
+    /* --- Profesores --- */
     .perfil-profe {
         width: 150px !important;
         height: 150px !important;
@@ -187,7 +174,7 @@
     th { background-color: var(--negro-cinturon); color: white; }
     tr:nth-child(even) {background-color: #f9f9f9;}
 
-    /* --- Botón Flotante de WhatsApp (Estilo Nuevo) --- */
+    /* --- Botón Flotante de WhatsApp (Visible y Seguro) --- */
     .btn-flotante-wa {
         position: fixed;
         bottom: 30px;
@@ -203,22 +190,17 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        text-decoration: none;
+        font-size: 30px; /* Tamaño del icono */
         transition: transform 0.3s;
     }
 
     .btn-flotante-wa:hover {
-        transform: scale(1.1); /* Se agranda al pasar el mouse */
+        transform: scale(1.1);
         background-color: #128C7E;
     }
 
-    /* Icono SVG de WhatsApp dentro del botón */
-    .btn-flotante-wa svg {
-        width: 35px;
-        height: 35px;
-        fill: white;
-    }
-
-    /* --- Botones normales --- */
+    /* --- Botones Redes Sociales (Sección Contacto) --- */
     .redes-container {
       display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 20px;
     }
@@ -245,7 +227,7 @@
   </nav>
 
   <header id="inicio">
-    <div class="oculto">
+    <div>
         <h1>Escuela de <span style="color: var(--rojo-tkd);">Taekwondo</span></h1>
         <p class="frase-coreana">정신 바짝 차리면 불가능한 것도 할 수 있다</p>
         <p>Disciplina, Respeto y Autocontrol</p>
@@ -261,7 +243,7 @@
 
   <div class="container">
 
-    <section id="que-es" class="oculto">
+    <section id="que-es">
       <h2>¿Qué es el Taekwondo?</h2>
       <p>
         El <strong>Taekwondo</strong> es un arte marcial coreano moderno. Se destaca por la variedad y espectacularidad de sus técnicas de patada (chagui).
@@ -274,7 +256,7 @@
       <p>Aquí forjamos carácter a través del esfuerzo físico y mental.</p>
     </section>
 
-    <section id="profesores" class="oculto">
+    <section id="profesores">
       <h2>Nuestros Profesores</h2>
       <div class="grid-profesores">
         <div style="border: 1px solid #eee; padding: 20px; border-radius: 10px;">
@@ -292,7 +274,7 @@
       </div>
     </section>
 
-    <section id="clases" class="oculto">
+    <section id="clases">
       <h2>Horarios de Clase</h2>
       <div style="overflow-x:auto;">
           <table>
@@ -309,8 +291,8 @@
       </div>
     </section>
 
-    <section id="galeria" class="oculto">
-      <h2>Galería de Fotos </h2>
+    <section id="galeria">
+      <h2>Galería de Fotos 📸</h2>
       <p><em>Desliza para ver más fotos →</em></p>
       <div class="galeria-deslizable">
         <div class="media-item"><img src="copa.jpg" alt="Torneo Copa"></div>
@@ -320,8 +302,8 @@
       </div>
     </section>
 
-    <section id="videos" class="oculto">
-      <h2>Videos de Entrenamiento </h2>
+    <section id="videos">
+      <h2>Videos de Entrenamiento 🎥</h2>
       <p><em>Desliza para ver más videos →</em></p>
       <div class="galeria-deslizable">
         <div class="media-item">
@@ -333,7 +315,7 @@
       </div>
     </section>
 
-    <section id="contacto" class="oculto">
+    <section id="contacto">
       <h2>¡Entrena con nosotros!</h2>
       <p style="text-align: center; font-size: 1.2em;">
         ¿Tienes dudas sobre las clases o costos? Mándanos un mensaje directo.
@@ -345,7 +327,7 @@
       </div>
     </section>
 
-    <section id="ubicacion" class="oculto">
+    <section id="ubicacion">
       <h2>Nuestra Ubicación</h2>
       <p>Ubicado en planta alta en Av. Lázaro Cárdenas 1803, El bosque Sur, 71244 Santa Lucía del Camino.</p>
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3813.681816521576!2d-96.7028!3d17.0628!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDAzJzQ2LjEiTiA5NsKwNDInMTAuMSJX!5e0!3m2!1ses!2smx!4v1600000000000!5m2!1ses!2smx" class="mapa-responsive" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -355,6 +337,15 @@
 
   <a href="https://wa.me/5219515265175?text=Hola,%20quisiera%20informes%20sobre%20las%20clases%20de%20Taekwondo" 
      class="btn-flotante-wa" 
-     target="_blank">
-     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.
+     target="_blank"
+     title="Enviar WhatsApp">
+     💬
+  </a>
+  
+  <footer style="background: #111; color: white; text-align: center; padding: 20px; margin-top: 40px;">
+    <p>Escuela de Taekwondo - Oaxaca, México</p>
+    <p>© 2025 Yossef Jarquin - Todos los derechos reservados</p>
+  </footer>
+
+</body>
+</html>

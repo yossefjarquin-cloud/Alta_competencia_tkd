@@ -51,7 +51,6 @@
     /* --- Estilos del Encabezado (Hero) --- */
     header {
       background-color: #222; 
-      /* Asegúrate de que fondo_tkd.jpg exista en tu carpeta */
       background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('fondo_tkd.jpg');
       background-size: cover;
       color: white;
@@ -63,6 +62,15 @@
       font-family: 'Bebas Neue', sans-serif;
       font-size: 4em;
       margin: 0;
+    }
+    
+    /* Estilo para la frase en coreano */
+    .frase-coreana {
+        font-size: 1.5em;
+        font-weight: 300;
+        margin-top: 10px;
+        color: #ffeb3b; /* Color amarillo para resaltar */
+        font-style: italic;
     }
 
     header img {
@@ -106,7 +114,6 @@
       margin-top: 20px;
     }
 
-    /* Estilo del botón de WhatsApp */
     .btn-whatsapp {
       background-color: #25D366;
       color: white;
@@ -120,7 +127,6 @@
       display: inline-block;
     }
 
-    /* Estilo del botón de Facebook */
     .btn-facebook {
       background-color: #1877F2;
       color: white;
@@ -139,9 +145,7 @@
       opacity: 0.9;
     }
 
-    /* --- DISEÑO RESPONSIVO DE GALERÍA (La parte importante) --- */
-    
-    /* 1. Base para Celulares (1 columna) */
+    /* --- DISEÑO RESPONSIVO DE GALERÍA --- */
     .grid-galeria {
         display: grid;
         grid-template-columns: 1fr;
@@ -149,14 +153,12 @@
         padding: 10px;
     }
 
-    /* 2. Para Computadoras (3 columnas) */
     @media (min-width: 768px) {
         .grid-galeria {
             grid-template-columns: repeat(3, 1fr);
         }
     }
 
-    /* 3. Ajuste de Imágenes */
     .media-item img, .media-item video, img {
         max-width: 100%;
         height: auto;
@@ -164,7 +166,6 @@
         display: block;
     }
     
-    /* Ajuste específico para las fotos de perfil de los profes */
     .perfil-profe {
         width: 150px !important;
         height: 150px !important;
@@ -212,6 +213,8 @@
 
   <header id="inicio">
     <h1>Escuela de <span style="color: var(--rojo-tkd);">Taekwondo</span></h1>
+    
+    <p class="frase-coreana">정신 바짝 차리면 불가능한 것도 할 수 있다</p>
     <p>Disciplina, Respeto y Autocontrol</p>
     
     <img src="escudo_tkd.jpg" alt="Logo Escuela">
